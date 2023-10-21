@@ -46,3 +46,74 @@ class Solution {
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 3.Spiral Matrix II
+class Solution {
+    public int[][] generateMatrix(int n) {
+         int[][] matrix = new int[n][n];
+          if (n == 0) {
+            return matrix;
+        }
+        int minr=0;
+        int minc=0;
+        int maxr=n-1;
+        int maxc=n-1;
+       
+        int num=1;
+       
+        while(minr<=maxc && minc<=maxc){
+        for(int i=minc;i<=maxc;i++){
+                matrix[minr][i]=num++;
+            }
+            minr++;
+        for(int i=minr;i<=maxr;i++){
+                matrix[i][maxc]=num++;
+            }
+            maxc--;
+        for(int i=maxc;i>=minc;i--){
+                matrix[maxr][i]=num++;
+            }
+            maxr--; 
+        for(int i=maxr;i>=minr;i--){
+                matrix[i][minc]=num++;
+            }
+            minc++;      
+        }
+        return matrix;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.Transpose a matrix
+
+class Solution {
+    public int[][] transpose(int[][] matrix) {
+        
+        int res[][]=new int[matrix[0].length][matrix.length];
+         for(int i=0;i<matrix.length;i++){
+             for(int j=0;j<matrix[0].length;j++){
+                 res[j][i]=matrix[i][j];
+             }
+         }
+         return res;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Set Matrix zero
+
+int m = matrix.length;
+       int n = matrix[0].length;
+  int row[]=new int[m];
+     int col[]=new int[n];
+     for(int i=0;i<m;i++){
+           for(int j=0;j<n;j++){
+               if(matrix[i][j]==0){
+                 row[i]=1;
+                 col[j]=1;
+               }
+           }
+       }
+    for(int i=0;i<m;i++){
+           for(int j=0;j<n;j++){
+             if(row[i]==1||col[j]==1){
+                 matrix[i][j]=0;
+             }
+           }
+       }
