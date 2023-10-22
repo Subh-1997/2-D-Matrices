@@ -224,3 +224,103 @@ private static int[]  printColSum(int[][] matrix) {
 	
 }
 }
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+11.Problem DescriptionYou are given a 2D integer matrix A, return a 1D integer array containing row-wise sums of original matrix.
+
+public class colSum {
+public static void main(String[] args) {
+	int matrix[][] = {{1,2,3,4},
+            {5,6,7,8},
+            {9,2,3,4}};
+	int[] printColSum = printColSum(matrix);
+	 for(int i: printColSum) {
+         System.out.println(i);
+	 }
+}
+
+private static int[]  printColSum(int[][] matrix) {
+
+	 int rows = matrix.length;
+     int cols = matrix[0].length;
+     int[] colSum = new int[rows];
+     for(int i = 0; i < rows; i++)
+     {
+        
+         int sum = 0;
+
+        
+         for(int j = 0; j < cols; j++)
+            
+             sum += matrix[i][j];
+         
+         colSum[i] = sum;
+     }
+     return colSum;
+	
+}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+12.Main Diagonal Sum
+
+int A[][] = { { 1, 2, 3 },
+            { 4, 5, 6} ,
+            {7, 8, 9}
+            };
+	int sum = 0;
+	int n = A.length;
+	for(int i=0;i<n;i++) {
+			sum+=A[i][i];
+	}
+	System.out.print(sum);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Diagonal Traverse II
+
+class Solution {
+    public int[] findDiagonalOrder(List<List<Integer>> nums) {
+        int m = nums.size(), maxSum = 0, size = 0, index = 0;
+        List<Integer>[] map = new ArrayList[100001];
+        for (int i = 0; i < m; i++) {
+            size += nums.get(i).size();
+            for (int j = 0; j < nums.get(i).size(); j++) {
+                int sum = i + j;
+                if (map[sum] == null) map[sum] = new ArrayList<>();
+                map[sum].add(nums.get(i).get(j));
+                maxSum = Math.max(maxSum, sum);
+            }
+        }
+        int[] res = new int[size];
+        for (int i = 0; i <= maxSum; i++) {
+            List<Integer> cur = map[i];
+            for (int j = cur.size() - 1; j >= 0; j--) {
+                res[index++] = cur.get(j);
+            }
+        }
+        return res;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.Anti Diagonals
+public class Solution {
+    public ArrayList<ArrayList<Integer>> diagonal(ArrayList<ArrayList<Integer>> A) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        
+         int m = A.size(), maxSum = 0, size = 0, index = 0;
+        ArrayList<Integer>[] map = new ArrayList[100001];
+        for (int i = 0; i < m; i++) {
+            size += A.get(i).size();
+            for (int j = 0; j < A.get(i).size(); j++) {
+                int sum = i + j;
+                if (map[sum] == null) map[sum] = new ArrayList<>();
+                map[sum].add(A.get(i).get(j));
+                maxSum = Math.max(maxSum, sum);
+            }
+        }
+        
+        for (int i = 0; i <= maxSum; i++) {
+            ArrayList<Integer> curr = map[i];
+           res.add(curr);
+        }
+        return res;
+    }
+}
